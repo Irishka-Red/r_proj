@@ -1,0 +1,10 @@
+.footer{
+    display: flex;
+    justify-content: space-evenly
+}
+.button{
+    background-color: bisque;
+    width: 150px;
+    height: 70px;
+    border-radius: 20%;
+}
