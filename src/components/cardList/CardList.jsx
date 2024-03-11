@@ -15,6 +15,9 @@ function CardList(props){
             <input type="text" placeholder="Transcription"></input>
             <input type="text" placeholder="Russian"></input>
             </div>
+            <div>
+            <button>Сохранить</button>    
+            </div>
         </div>
     )
 }
