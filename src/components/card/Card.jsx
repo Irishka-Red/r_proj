@@ -1,21 +1,40 @@
+import React, {useState} from 'react';
 import styles from './card.module.css'
-import WordsChange from './WordsChange';
 
-function Card(props){
-    const words = [
-        {
-            "id":"15279",
-            "english":"orange",
-            "transcription":"[orange]",
-            "russian":"оранжевый",
-            "tags":"Colors",
-            "tags_json":"[ \"Цвета\"]"},
-        {
-            "id":"15281",
-            "english":"lesson",
-            "transscription":"[lesson]",
-            "russian":"урок","tags":"Общие ",
-            "tags_json":"[\"General\"]"},
+const Card = ({ words }) => {
+const [currentIndex, setCurrentIndex] = useState(0);
+const [showTranslation, setShowTranslation] = useState (false);
+const currentWord = words[currentIndex];
+
+const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex ===words.length - 1? 0: prevIndex + 1));
+    setShowTranslation (false);
+};
+
+const handlePrevious = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ?words.length - 1 : prevIndex - 1));
+    setShowTranslation (false);
+};
+
+const handleShowTranslation = () => {
+    setShowTranslation (true);
+};
+
+return (
+    <div className={styles.carousel}>
+    <button className={styles.button} onClick={handlePrevious}>Назад</button>
+    <div className={styles.card}>
+        <h2>{currentWord.english}</h2>
+        {showTranslation && <p>{currentWord.russian}</p>}
+        <button className={styles.button} onClick={handleShowTranslation}>Показать перевод</button>
+    </div>
+    <button className={styles.button} onClick={handleNext}>Вперед</button>
+    </div>
+);
+};
+
+Card.defaultProps = {
+words: [
         {
             "id":"15286",
             "english":"test",
@@ -45,14 +64,7 @@ function Card(props){
             "tags":"General",
             "tags_json":"[\"General\"]"
         }
-    ];
-    return(
-        <div className={styles.card}>
-                  {
-                  words.map((word) =>
-        <WordsChange key={word.id} word={word.english} />
-      )}
-        </div>
-    )
+    ] 
 };
+
 export default Card;

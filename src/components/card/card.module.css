@@ -1,6 +1,22 @@
 .card{
-text-align: center;
-width: 200px; 
-height: 200px;
+display: flex;
+flex-direction: column;
+flex-wrap: nowrap;
+justify-content: center;
+align-items: center;
+width: 250px; 
+height: 250px;
 border: 1px solid black;
+}
+.carousel{
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-evenly
+}
+.button{
+background-color: bisque;
+width: 100px;
+height: 50px;
+border-radius: 20%;
 }
