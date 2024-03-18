@@ -1,8 +1,5 @@
-.list{
+.cardlist{
     display: flex;
-    justify-content: space-around;
-}
-.input{
-    display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: stretch;
 }
