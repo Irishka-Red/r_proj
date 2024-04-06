@@ -1,7 +1,7 @@
 import './App.css';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
-import Card from './components/card/Card';
+import Cards from './components/card/Cards';
 import CardList from './components/cardList/CardList'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/navBar/NavBar';
@@ -14,7 +14,7 @@ function App() {
       <NavBar/>
       <Routes>
         <Route path="/" element={<CardList/>}/>
-        <Route path="card" element={<Card/>}/>
+        <Route path="card" element={<Cards/>}/>
       </Routes>
       < Footer/>
     </div>
