@@ -12,7 +12,8 @@ const Card = ({ word, onViewTranslation }) => {
 
   useEffect(() => {
     TranslationButtonRef.current.focus();
-  }, []);
+    setShowTranslation(false);
+  }, [word.english]);
 
   return (
     <div className={styles.carousel}>
