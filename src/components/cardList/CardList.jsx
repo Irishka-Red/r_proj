@@ -5,10 +5,11 @@ import styles from "./cardList.module.css";
  
 function CardList() {
     const [wordsData, setwordsData] = useState(jsonData);
+    const [isFormValid, setIsFormValid] = useState(false);
  
     const tableRows = wordsData.map((info) => {
         return (
-            <tr>
+            <tr key={info.id}>
                 <td>{info.english}</td>
                 <td>{info.transcription}</td>
                 <td>{info.translation}</td>
@@ -23,6 +24,10 @@ function CardList() {
         updatedWordsData.push(data);
         setwordsData(updatedWordsData);
     };
+
+    const handleFormChange = (isValid) => {
+        setIsFormValid(isValid);
+      };
  
     return (
         <div className={`${styles.cardlist}`}>
@@ -36,7 +41,8 @@ function CardList() {
                 </thead>
                 <tbody>{tableRows}</tbody>
             </table>
-            <CardForm func={addRows} />
+            <CardForm func={addRows} onChange={handleFormChange} />
+            {!isFormValid && <p>Please fill in all fields</p>}
         </div>
     );
 }

@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
  
 function CardForm(props) {
     const [english, setEnglish] = useState('');
     const [transcription, setTranscription] = useState('');
     const [translation, setTranslation] = useState('');
+
+    useEffect(() => {
+        const isValid = english.trim() !== '' && transcription.trim() !== '' && translation.trim() !== '';
+        props.onChange(isValid);
+      }, [english, transcription, translation, props]);
  
     const changeEnglish = (event) => {
         setEnglish(event.target.value);
@@ -37,15 +42,17 @@ function CardForm(props) {
  
     return (
         <div>
-            <label>English</label>
-            <input type="text" value={english} onChange={changeEnglish } />
-            <label>Transcription</label>
-            <input type="text" value={transcription} onChange={changeTranscription} />
-            <label>Translation</label>
-            <input type="text" value={translation} onChange={changeTranslation} />
-            <button onClick={transferValue}>Сохранить</button>
-        </div>
-    );
+          <label>English</label>
+          <input type="text" value={english} onChange={changeEnglish} className={english.trim() === '' ? 'error' : ''} />
+          <label>Transcription</label>
+          <input type="text" value={transcription} onChange={changeTranscription} className={transcription.trim() === '' ? 'error' : ''} />
+          <label>Translation</label>
+      <input type="text" value={translation} onChange={changeTranslation} className={translation.trim() === '' ? 'error' : ''} />
+      <button onClick={transferValue} disabled={english.trim() === '' || transcription.trim() === '' || translation.trim() === ''}>
+        Save
+      </button>
+    </div>
+  );
 }
  
 export default CardForm;

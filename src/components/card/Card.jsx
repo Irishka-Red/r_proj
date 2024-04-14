@@ -3,7 +3,7 @@ import styles from './card.module.css';
 
 const Card = ({ word, onViewTranslation }) => {
   const [showTranslation, setShowTranslation] = useState (false);
-  const TranslationButtonRef = useRef (0);
+  const translationButtonRef = useRef (null);
 
   const handleShowTranslation = () => {
     setShowTranslation (true);
@@ -11,7 +11,7 @@ const Card = ({ word, onViewTranslation }) => {
   };
 
   useEffect(() => {
-    TranslationButtonRef.current.focus();
+    translationButtonRef.current.focus();
     setShowTranslation(false);
   }, [word.english]);
 
@@ -21,7 +21,7 @@ const Card = ({ word, onViewTranslation }) => {
         <h2>{word.english}</h2>
         {showTranslation && <p>{word.russian}</p>}
         <button
-          ref={TranslationButtonRef}
+          ref={translationButtonRef}
           className={styles.button}
           onClick={handleShowTranslation}
         >
